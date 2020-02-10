@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6629A31F23F1B4770014CC1D /* AVURLAsset+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6629A31E23F1B4770014CC1D /* AVURLAsset+extension.swift */; };
-		6629A32123F1B8C20014CC1D /* viewModel + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6629A32023F1B8C20014CC1D /* viewModel + extension.swift */; };
+		6629A32123F1B8C20014CC1D /* videoModel + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6629A32023F1B8C20014CC1D /* videoModel + extension.swift */; };
 		666227DE23E764A60021D1BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666227DD23E764A60021D1BD /* AppDelegate.swift */; };
 		666227E023E764A60021D1BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666227DF23E764A60021D1BD /* ViewController.swift */; };
 		666227E323E764A60021D1BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666227E123E764A60021D1BD /* Main.storyboard */; };
@@ -39,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		6629A31E23F1B4770014CC1D /* AVURLAsset+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVURLAsset+extension.swift"; sourceTree = "<group>"; };
-		6629A32023F1B8C20014CC1D /* viewModel + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "viewModel + extension.swift"; sourceTree = "<group>"; };
+		6629A32023F1B8C20014CC1D /* videoModel + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "videoModel + extension.swift"; sourceTree = "<group>"; };
 		666227DA23E764A60021D1BD /* flyingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flyingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666227DD23E764A60021D1BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		666227DF23E764A60021D1BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				6629A31E23F1B4770014CC1D /* AVURLAsset+extension.swift */,
-				6629A32023F1B8C20014CC1D /* viewModel + extension.swift */,
+				6629A32023F1B8C20014CC1D /* videoModel + extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6662280923E76A140021D1BD /* videoModel.swift in Sources */,
-				6629A32123F1B8C20014CC1D /* viewModel + extension.swift in Sources */,
+				6629A32123F1B8C20014CC1D /* videoModel + extension.swift in Sources */,
 				666227E023E764A60021D1BD /* ViewController.swift in Sources */,
 				6662280B23E76A8B0021D1BD /* JSONParser.swift in Sources */,
 				6662280D23E76AFE0021D1BD /* playlistArrayModel.swift in Sources */,

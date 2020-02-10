@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         player.automaticallyWaitsToMinimizeStalling = true
-        // Do any additional setup after loading the view.
         addPlayerNotifications()
     }
     
@@ -32,15 +31,15 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
-    //App enter in forground.
+    
     @objc func applicationWillEnterForeground(_ notification: Notification) {
         self.player.play()
     }
     
-    //App enter in forground.
     @objc func applicationDidEnterBackground(_ notification: Notification) {
         self.player.pause()
     }
+    
     func loadVideos() {
         let parser:JSONParser = JSONParser()
         parser.downloadData(completion: {(success) in
@@ -48,7 +47,7 @@ class ViewController: UIViewController {
                 self.playlistItens = parser.playlistItens
                 var playerItems = [AVPlayerItem]()
                 self.playlistItens.forEach { (videoModel) in
-                    if let asset = self.checkDownload(videoModel: videoModel) {
+                    if let asset = videoModel.checkDownload() {
                         let playerItem = AVPlayerItem(asset: asset)
                         playerItems.append(playerItem)
                         self.player.insert(playerItem, after: nil)
@@ -74,16 +73,14 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) {
             
             notification in
-            
+    
             self.currentVideo += 1
-            print("CURRENT VIDEO \(self.currentVideo)")
             if(self.currentVideo >= self.playlistItens.count) {
                 self.currentVideo = 0
-            print("CURRENT VIDEO \(self.currentVideo)")
             }
             if self.playlistItens.indices.contains(self.currentVideo) {
                 let videoModel = self.playlistItens[self.currentVideo]
-                if let asset = self.checkDownload(videoModel: videoModel) {
+                if let asset = videoModel.checkDownload() {
                     let playerItem = AVPlayerItem.init(asset: asset)
                     self.player.insert(playerItem, after: nil)
                 }
@@ -91,21 +88,5 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkDownload(videoModel: videoModel) -> AVURLAsset? {
-        if let url = videoModel.url {
-            var asset = AVURLAsset(url: url)
-            if !asset.isDownloaded() {
-                videoModel.downloadVideo()
-            } else {
-                    if let localAssetURL = asset.downloadPath() {
-                        asset = AVURLAsset.init(url: localAssetURL)
-                    }
-            }
-            print("ASSET URL:\(asset.url)")
-            return asset
-        }
-        return nil
-    }
-
 }
 

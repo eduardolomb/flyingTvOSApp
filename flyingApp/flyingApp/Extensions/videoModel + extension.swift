@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVKit
 
 extension videoModel {
     
@@ -42,6 +43,21 @@ extension videoModel {
         task.resume()
         }
     }
-        
+    
+    func checkDownload() -> AVURLAsset? {
+        if let url = self.url {
+            var asset = AVURLAsset(url: url)
+            if !asset.isDownloaded() {
+                self.downloadVideo()
+            } else {
+                if let localAssetURL = asset.downloadPath() {
+                    asset = AVURLAsset.init(url: localAssetURL)
+                }
+            }
+            print("ASSET URL:\(asset.url)")
+            return asset
+        }
+        return nil
+    }
 }
 
