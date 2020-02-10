@@ -18,23 +18,43 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         player.automaticallyWaitsToMinimizeStalling = true
         // Do any additional setup after loading the view.
+        addPlayerNotifications()
+    }
+    
+    func addPlayerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-
+    
+    func removePlayerNotifations() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    //App enter in forground.
+    @objc func applicationWillEnterForeground(_ notification: Notification) {
+        self.player.play()
+    }
+    
+    //App enter in forground.
+    @objc func applicationDidEnterBackground(_ notification: Notification) {
+        self.player.pause()
+    }
+    func loadVideos() {
         let parser:JSONParser = JSONParser()
         parser.downloadData(completion: {(success) in
             if success {
                 self.playlistItens = parser.playlistItens
                 var playerItems = [AVPlayerItem]()
                 self.playlistItens.forEach { (videoModel) in
-                if let asset = self.checkDownload(videoModel: videoModel) {
-                    let playerItem = AVPlayerItem(asset: asset)
-                    playerItems.append(playerItem)
-                    self.player.insert(playerItem, after: nil)
+                    if let asset = self.checkDownload(videoModel: videoModel) {
+                        let playerItem = AVPlayerItem(asset: asset)
+                        playerItems.append(playerItem)
+                        self.player.insert(playerItem, after: nil)
                     }
-            }
-            
+                }
+                
                 let controller = AVPlayerViewController()
                 controller.showsPlaybackControls = false
                 controller.player = self.player
@@ -44,6 +64,10 @@ class ViewController: UIViewController {
                 }
             }})
         repeatVideo()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadVideos()
     }
     
     func repeatVideo() {
