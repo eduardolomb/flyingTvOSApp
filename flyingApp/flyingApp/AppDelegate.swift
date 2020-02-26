@@ -18,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    
+    func restartApplication() {
+        guard let player =  UIApplication.shared.windows[0].rootViewController as? ViewController else {
+            return
+        }
+        player.resetController()
+        }
+    
+
 
 }
 

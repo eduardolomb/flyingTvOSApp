@@ -14,9 +14,19 @@ class ViewController: UIViewController {
     var playlistItens:[videoModel] = []
     var currentVideo = 0
     var player = AVQueuePlayer()
+    
+    func resetController() {
+        playlistItens.removeAll()
+        player.removeAllItems()
+        currentVideo = 0
+        loadVideos()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         player.automaticallyWaitsToMinimizeStalling = true
+        player.isMuted = true
         addPlayerNotifications()
     }
     
